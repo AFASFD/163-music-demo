@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+
+<body>
+    <div class="page">
+        <aside>
+            <div class="newSong"></div>
+            <div id="songList-container"></div>
+            <div class="uploadArea">
+                <div id="uploadContainer" class="draggable">
+                    <span id="uploadButton" class="clickable">点击或拖曳文件上传</span>
+                    <span>文件大小最大不能超过20M</span>
+                </div>
+            </div>
+        </aside>
+        <main class="active"></main>
+    </div>
+    <div class="loading"></div>
+    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="./js/initializers/av.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/plupload/js/moxie.min.js"></script>
+    <script src="../node_modules/plupload/js/plupload.min.js"></script>
+    <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+    <script src="./js/admin/event-hub.js"></script>
+    <script src="./js/admin/song-form.js"></script>
+    <script src="./js/admin/new-song.js"></script>
+    <script src="./js/admin/song-list.js"></script>
+    <script src="./js/admin/loading.js"></script>
+    <script src="./js/admin/upload-song.js"></script>
+</body>
+
+</html>

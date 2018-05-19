@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/song.css">
+    <title>我的云音乐</title>
+</head>
+
+<body class="x">
+    <div id="app">
+        <div class="mosaicBackground"></div>
+        <audio></audio>
+        <div class="logo">
+            <img src="http://s3.music.126.net/m/s/img/logo_3x.png?d79ce509c143e0f745d972d8804b242a" alt="">
+        </div>
+        <div class="disc-wrap">
+            <div class="disc">
+                <img class="cover" alt="">
+            </div>
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-play-button-1"></use>
+            </svg>
+        </div>
+        <div class="lyric">
+            <h2>
+                <span class="name"></span>
+                <span class="gap">-</span>
+                <span class="singer"></span>
+            </h2>
+            <div class="lines-wrap">
+                <div class="lines"></div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="open">打开</button>
+            <button class="download">下载</button>
+        </div>
+    </div>
+    <script src="./js/index/rem.js"></script>
+    <script src="//at.alicdn.com/t/font_657937_c5qw8k0x1sb57b9.js"></script>
+    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="./js/initializers/av.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/admin/event-hub.js"></script>
+    <script src="./js/song/app.js"></script>
+    <script>
+        $("body").removeClass("x");
+    </script>
+</body>
+
+</html>

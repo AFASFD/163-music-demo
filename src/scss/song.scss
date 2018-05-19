@@ -1,0 +1,217 @@
+@function px($px) {
+  @return $px/$designWidth * 10 + rem;
+}
+$designWidth: 414;
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+*::after {
+  box-sizing: border-box;
+}
+*::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.x{
+  display: none;
+}
+/* app */
+#app {
+  background: rgba(0, 0, 0, 0.6);
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  .mosaicBackground {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(20px);
+  }
+  &.active {
+    .disc-wrap {
+      .disc {
+        animation-play-state: running;
+      }
+      svg {
+        display: none;
+      }
+    }
+  }
+  /* logo */
+  .logo {
+    height: px(80);
+    padding-top: px(12);
+    padding-left: px(12);
+    display: flex;
+    align-items: flex-start;
+    img {
+      width: px(100);
+      height: px(18);
+    }
+  }
+  /* disc */
+  .disc-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: px(20);
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: px(-80);
+      left: px(190);
+      width: px(114);
+      height: px(165);
+      background-image: url(//s3.music.126.net/m/s/img/needle-plus.png?994aa910ce3e4d242eb7076620b0e502);
+      background-size: px(114) px(165);
+    }
+    .disc {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: px(342) px(342);
+      background-repeat: no-repeat;
+      width: px(342);
+      height: px(342);
+      margin-right: auto;
+      margin-left: auto;
+      animation: play 20s infinite linear;
+      animation-play-state: paused;
+      background-image: url(http://s3.music.126.net/m/s/img/disc.png?d3bdd1080a72129346aa0b4b4964b75f);
+      img.cover {
+        width: px(212);
+        height: px(212);
+        border-radius: 50%;
+      }
+    }
+    svg {
+      position: absolute;
+      display: block;
+      width: px(65);
+      height: px(65);
+      z-index: 1;
+      fill: #edebe3;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+  }
+  /* lyric */
+  .lyric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: px(240);
+    h2 {
+      max-width: px(350);
+      height: px(24);
+      font-size: px(18);
+      color: #fefefe;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-bottom: px(21);
+      span {
+        font-size: px(18);
+        &.name {
+          color: #fefefe;
+        }
+        &.gap {
+          color: #bbafac;
+        }
+        &.singer {
+          font-size: px(16);
+          color: #bbafac;
+        }
+      }
+    }
+    .lines-wrap {
+      height: px(100);
+      overflow: hidden;
+      padding-top: px(40);
+      .lines {
+        transition: transform 0.3s;
+        p {
+          text-align: center;
+          color: #c2c0b8;
+          font-size: px(16);
+          margin-bottom: px(17);
+          &.active {
+            color: #fefefe;
+          }
+        }
+      }
+    }
+  }
+  /* buttons */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: px(10);
+    padding-right: px(10);
+    padding-bottom: px(6);
+    button {
+      font-size: px(18);
+      padding: px(10) px(75);
+      border-radius: px(50);
+      outline: none;
+      &.open {
+        background: transparent;
+        color: #d23a31;
+        border: px(1) solid #d23a31;
+      }
+      &.download {
+        background: #d23a31;
+        color: #f7fefe;
+        border: px(1) solid #d23a31;
+      }
+    }
+  }
+  @keyframes play {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

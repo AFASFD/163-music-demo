@@ -1,0 +1,181 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0; }
+
+* {
+  box-sizing: border-box; }
+
+*::after {
+  box-sizing: border-box; }
+
+*::before {
+  box-sizing: border-box; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+ul,
+ol {
+  list-style: none; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal; }
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden; }
+
+.x {
+  display: none; }
+
+/* app */
+#app {
+  background: rgba(0, 0, 0, 0.6);
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  /* logo */
+  /* disc */
+  /* lyric */
+  /* buttons */ }
+  #app .mosaicBackground {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(20px); }
+  #app.active .disc-wrap .disc {
+    animation-play-state: running; }
+  #app.active .disc-wrap svg {
+    display: none; }
+  #app .logo {
+    height: 1.93237rem;
+    padding-top: 0.28986rem;
+    padding-left: 0.28986rem;
+    display: flex;
+    align-items: flex-start; }
+    #app .logo img {
+      width: 2.41546rem;
+      height: 0.43478rem; }
+  #app .disc-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.48309rem; }
+    #app .disc-wrap::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -1.93237rem;
+      left: 4.58937rem;
+      width: 2.75362rem;
+      height: 3.98551rem;
+      background-image: url(//s3.music.126.net/m/s/img/needle-plus.png?994aa910ce3e4d242eb7076620b0e502);
+      background-size: 2.75362rem 3.98551rem; }
+    #app .disc-wrap .disc {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: 8.26087rem 8.26087rem;
+      background-repeat: no-repeat;
+      width: 8.26087rem;
+      height: 8.26087rem;
+      margin-right: auto;
+      margin-left: auto;
+      animation: play 20s infinite linear;
+      animation-play-state: paused;
+      background-image: url(http://s3.music.126.net/m/s/img/disc.png?d3bdd1080a72129346aa0b4b4964b75f); }
+      #app .disc-wrap .disc img.cover {
+        width: 5.12077rem;
+        height: 5.12077rem;
+        border-radius: 50%; }
+    #app .disc-wrap svg {
+      position: absolute;
+      display: block;
+      width: 1.57005rem;
+      height: 1.57005rem;
+      z-index: 1;
+      fill: #edebe3;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%; }
+  #app .lyric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5.7971rem; }
+    #app .lyric h2 {
+      max-width: 8.45411rem;
+      height: 0.57971rem;
+      font-size: 0.43478rem;
+      color: #fefefe;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-bottom: 0.50725rem; }
+      #app .lyric h2 span {
+        font-size: 0.43478rem; }
+        #app .lyric h2 span.name {
+          color: #fefefe; }
+        #app .lyric h2 span.gap {
+          color: #bbafac; }
+        #app .lyric h2 span.singer {
+          font-size: 0.38647rem;
+          color: #bbafac; }
+    #app .lyric .lines-wrap {
+      height: 2.41546rem;
+      overflow: hidden;
+      padding-top: 0.96618rem; }
+      #app .lyric .lines-wrap .lines {
+        transition: transform 0.3s; }
+        #app .lyric .lines-wrap .lines p {
+          text-align: center;
+          color: #c2c0b8;
+          font-size: 0.38647rem;
+          margin-bottom: 0.41063rem; }
+          #app .lyric .lines-wrap .lines p.active {
+            color: #fefefe; }
+  #app .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 0.24155rem;
+    padding-right: 0.24155rem;
+    padding-bottom: 0.14493rem; }
+    #app .buttons button {
+      font-size: 0.43478rem;
+      padding: 0.24155rem 1.81159rem;
+      border-radius: 1.20773rem;
+      outline: none; }
+      #app .buttons button.open {
+        background: transparent;
+        color: #d23a31;
+        border: 0.02415rem solid #d23a31; }
+      #app .buttons button.download {
+        background: #d23a31;
+        color: #f7fefe;
+        border: 0.02415rem solid #d23a31; }
+
+@keyframes play {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
