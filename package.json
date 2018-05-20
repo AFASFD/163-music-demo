@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "express": "^4.16.3",
     "jquery": "^3.3.1",
     "leancloud-storage": "^3.6.8",
     "plupload": "^2.3.2",

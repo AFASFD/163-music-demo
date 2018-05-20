@@ -1,80 +1,69 @@
-var http = require("http");
+var express = require("express");
 var fs = require("fs");
-var url = require("url");
-var port = process.argv[2];
-var qiniu = require("qiniu")
+var qiniu = require("qiniu");
+var app = express();
+app.use(express.static("css"));
+app.use(express.static("js"));
+app.use(express.static("vendors"));
+app.use(express.static("../node_modules"));
+app.get("/", function(req, res) {
+  res.status(200);
+  let string = fs.readFileSync("./index.html");
+  res.set({
+    "Content-Type": "text/html;charset=utf-8"
+  });
+  res.send(string);
+});
+app.get("/del_user", function(req, res) {
+  console.log("/del_user 响应 DELETE 请求");
+  res.send("删除页面");
+});
 
-if (!port) {
-  console.log("请指定端口号好不啦？\nnode server.js 8888 这样不会吗？");
-  process.exit(1);
-}
-
-var server = http.createServer(function(request, response) {
-  var parsedUrl = url.parse(request.url, true);
-  var pathWithQuery = request.url;
-  var queryString = "";
-  if (pathWithQuery.indexOf("?") >= 0) {
-    queryString = pathWithQuery.substring(pathWithQuery.indexOf("?"));
-  }
-  var path = parsedUrl.pathname;
-  var query = parsedUrl.query;
-  var method = request.method;
-  /******** 从这里开始看，上面不要看 ************/
-
-  //   console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
-
-  if (path === "/xxx") {
-    response.statusCode = 200;
-    response.setHeader("Content-Type", "text/json;charset=utf-8");
-    response.setHeader("Access-Control-Allow-Origin", "*");
-    var config = fs.readFileSync("../qiniu-key.json");
-    config = JSON.parse(config);
-    var { accessKey, secretKey } = config;
-    var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
-    var options = {
-      scope: "163-music-demo"
-    };
-    var putPolicy = new qiniu.rs.PutPolicy(options);
-    var uploadToken = putPolicy.uploadToken(mac);
-    uploadToken=JSON.stringify(uploadToken)
-    response.write(`
+//  /list_user 页面 GET 请求
+app.get("/list_user", function(req, res) {
+  console.log("/list_user GET 请求");
+  res.send("用户列表页面");
+});
+app.get("/song", function(req, res) {
+  res.status(200);
+  let string = fs.readFileSync("./song.html");
+  res.set({
+    "Content-Type": "text/html;charset=utf-8"
+  });
+  res.send(string);
+});
+app.get("/admin", function(req, res) {
+  res.status(200);
+  let string = fs.readFileSync("./admin.html");
+  res.set({
+    "Content-Type": "text/html;charset=utf-8"
+  });
+  res.send(string);
+});
+app.get("/xxx", function(req, res) {
+  res.status(200);
+  let config = fs.readFileSync("../qiniu-key.json");
+  res.set({
+    "Content-Type": "text/json;charset=utf-8"
+  });
+  config = JSON.parse(config);
+  let { accessKey, secretKey } = config;
+  let mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
+  let options = {
+    scope: "163-music-demo"
+  };
+  let putPolicy = new qiniu.rs.PutPolicy(options);
+  let uploadToken = putPolicy.uploadToken(mac);
+  uploadToken = JSON.stringify(uploadToken);
+  res.send(`
       {
         "uptoken": ${uploadToken}
       }
       `);
-    response.end();
-  } else {
-    response.statusCode = 404;
-    response.setHeader("Content-Type", "text/html;charset=utf-8");
-    response.write(`
-        {
-          "error": "not found"
-        }
-      `);
-    response.end();
-  }
-
-  /******** 代码结束，下面不要看 ************/
 });
 
-function readBody(request) {
-  return new Promise((resolve, reject) => {
-    let body = [];
-    request
-      .on("data", chunk => {
-        body.push(chunk);
-      })
-      .on("end", () => {
-        body = Buffer.concat(body).toString();
-        resolve(body);
-      });
-  });
-}
+var server = app.listen(8888, function() {
+  var port = server.address().port;
 
-server.listen(port);
-console.log(
-  "监听 " +
-    port +
-    " 成功\n请用在空中转体720度然后用电饭煲打开 http://localhost:" +
-    port
-);
+  console.log("Example app listening at http://localhost:" + port);
+});

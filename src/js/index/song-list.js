@@ -3,7 +3,7 @@
     el: ".songList",
     template: `
     <li>
-        <a href="./song.html?id=__id__">
+        <a href="./song?id=__id__">
             <div class="song-information">
                 <p class="song-name">__name__</p>
                 <p class="singer">__singer__</p>
