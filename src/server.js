@@ -14,16 +14,6 @@ app.get("/", function(req, res) {
   });
   res.send(string);
 });
-app.get("/del_user", function(req, res) {
-  console.log("/del_user 响应 DELETE 请求");
-  res.send("删除页面");
-});
-
-//  /list_user 页面 GET 请求
-app.get("/list_user", function(req, res) {
-  console.log("/list_user GET 请求");
-  res.send("用户列表页面");
-});
 app.get("/song", function(req, res) {
   res.status(200);
   let string = fs.readFileSync("./song.html");
